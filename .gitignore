@@ -2,3 +2,13 @@ bin
 .settings
 .classpath
 .project
+.metadata
+
+# Maven 
+target/
+
+# IntelliJ project files 
+*.iml
+*.iws
+*.ipr
+.idea
