@@ -6,16 +6,16 @@ import java.util.Objects;
 import persistence.impl.AtraccionDAOImpl;
 
 public class Atraccion implements Ofertable {
-    private int id;
+    private Integer id;
     private String nombre;
-    private double costoVisita;
-    private double tiempoPromedio;
+    private Double costoVisita;
+    private Double tiempoPromedio;
     private TipoDeAtraccion tipoDeAtraccion;
-    private int cupo;
+    private Integer cupo;
 
     
    
-    public Atraccion(String nombre, double costoVisita, double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion, int cupo) {
+    public Atraccion(String nombre, Double costoVisita, Double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion, Integer cupo) {
         super();
     	if (costoVisita < 0) {
             throw new Error("Costo Inválido");
@@ -36,14 +36,7 @@ public class Atraccion implements Ofertable {
         this.cupo = cupo;
     }
     
-	public Atraccion(String nombre, Integer costoVisita, Double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion,Integer cupo) {
-		super();
-		this.nombre = nombre;
-		this.costoVisita = costoVisita;
-		this.tiempoPromedio = tiempoPromedio;
-		this.tipoDeAtraccion = tipoDeAtraccion;
-		this.cupo = cupo;
-	}
+
 	
 	public Atraccion(Integer id, String nombre, Double costoVisita, Double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion,Integer cupo) {
 		this(nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
@@ -131,7 +124,7 @@ public class Atraccion implements Ofertable {
 		
 	}
 
-	public void setCosto(double costoVisita) {
+	public void setCosto(Double costoVisita) {
 		this.costoVisita = costoVisita;
 		
 	}

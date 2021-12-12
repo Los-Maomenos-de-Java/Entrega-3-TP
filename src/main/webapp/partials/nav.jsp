@@ -7,9 +7,7 @@
 		<nav>
 			<ul class="lista">
 				<li>Promociones</li>
-				<a href="turismo/attractions/index.do">
-					<li>Atracciones</li>
-				</a>
+				<li><a href="/tp3/atracciones/index.do">Atracciones</a></li>
 				<a href="#">
 					<li>Mi cuenta</li>
 				</a>

@@ -78,14 +78,14 @@ public class AtraccionDAOImpl {
 
 	private Atraccion toAtraccion(ResultSet resultados) {
 		try {
-			int id = resultados.getInt(1);
+			Integer id = resultados.getInt(1);
 			String nombre = resultados.getString(2);
-			double costo = resultados.getDouble(3);
-			double tiempo = resultados.getDouble(4);
+			Double costoVisita = Double.valueOf(resultados.getDouble(3));
+			Double tiempoPromedio = resultados.getDouble(4);
 			TipoDeAtraccion tipo = getTipoAtraccion(resultados.getInt(5));
-			int cupo = resultados.getInt(6);
+			Integer cupo = resultados.getInt(6);
 
-			return new Atraccion(id, nombre, costo, tiempo, tipo, cupo);
+			return new Atraccion(id, nombre, costoVisita, tiempoPromedio, tipo, cupo);
 
 		} catch (Exception e) {
 			throw new MissingDataException(e);
