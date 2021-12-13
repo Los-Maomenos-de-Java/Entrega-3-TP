@@ -14,8 +14,8 @@ public class PromocionAbsoluta extends Promocion {
     }
 
     @Override
-    public double getCosto() {
-        return costoTotalAtracciones() - descuentoAbsoluto;
+    public Integer getCosto() {
+        return (int) (costoTotalAtracciones() - descuentoAbsoluto);
     }
 
     @Override

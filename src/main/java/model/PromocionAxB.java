@@ -16,8 +16,8 @@ public class PromocionAxB extends Promocion {
     }
 
     @Override
-    public double getCosto() {
-        return atracciones
+    public Integer getCosto() {
+        return (int) atracciones
                 .stream()
                 .filter(atraccion -> !atraccionesGratis.contains(atraccion))
                 .mapToDouble(Atraccion::getCosto).sum();

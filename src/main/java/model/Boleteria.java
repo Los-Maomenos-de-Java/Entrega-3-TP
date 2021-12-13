@@ -4,7 +4,9 @@ package model;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import persistence.impl.AtraccionDAOImpl;
+
+import persistence.AtraccionDAO;
+import persistence.commons.DAOFactory;
 import persistence.impl.ItinerarioDAOImpl;
 import persistence.impl.PromocionDAOImpl;
 
@@ -15,7 +17,8 @@ public class Boleteria {
     private Vendedor vendedor = new Vendedor();
 
     public Boleteria() {
-        ofertables.addAll(AtraccionDAOImpl.getInstance().findAll());
+    	AtraccionDAO atraccionDAO = DAOFactory.getAttractionDAO();
+        ofertables.addAll(atraccionDAO.findAll());
         ofertables.addAll(PromocionDAOImpl.getInstance().findAll());
     }
 
@@ -39,14 +42,14 @@ public class Boleteria {
         return false;
     }
 
-    private List<Ofertable> ofertasOrdenadasPara(Usuario usuario) {
+    public List<Ofertable> ofertasOrdenadasPara(Usuario usuario) {
         this.ofertasParaUsuario.addAll(ofertables);
         this.ofertasParaUsuario.sort(new OrdenadorDeOfertas(usuario.getTipoDeAtraccionPreferida()));
         this.ofertasFiltradasPara(usuario);
         return this.ofertasParaUsuario;
     }
 
-    private List<Ofertable> ofertasFiltradasPara(Usuario usuario) {
+    public List<Ofertable> ofertasFiltradasPara(Usuario usuario) {
         //remover oferta si alguna de las: oferta.Atracciones est� en atraccionesVendidas
         this.ofertasParaUsuario.removeIf(this::tieneAtraccionVendida);
         this.ofertasParaUsuario.removeIf(ofertable -> !ofertable.tieneCupo());
@@ -79,4 +82,10 @@ public class Boleteria {
         ofertasOrdenadasPara(usuario);
         return ofertasFiltradasPara(usuario);
     }
+
+	public List<Ofertable> getOfertables() {
+		return ofertables;
+	}
+    
+    
 }

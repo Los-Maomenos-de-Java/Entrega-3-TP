@@ -8,7 +8,7 @@ public abstract class Promocion implements Ofertable {
     private int id;
     private String nombre;
 
-    public Promocion(int id, String nombre) {
+    public Promocion(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
@@ -40,7 +40,7 @@ public abstract class Promocion implements Ofertable {
     }
 
     @Override
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
 
@@ -50,7 +50,7 @@ public abstract class Promocion implements Ofertable {
     }
 
     @Override
-    public double getTiempo() {
+    public Double getTiempo() {
         return atracciones
                 .stream()
                 .mapToDouble(Atraccion::getTiempo)
@@ -58,7 +58,7 @@ public abstract class Promocion implements Ofertable {
     }
 
     @Override
-    public int getCupo() {
+    public Integer getCupo() {
         return atracciones
                 .stream()
                 .mapToInt(Atraccion::getCupo)

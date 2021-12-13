@@ -47,13 +47,13 @@ public class PromocionDAOImpl {
 		try {
 			Promocion promocionAAgregar = null;
 
-			int id = resultados.getInt(1);
+			Integer id = resultados.getInt(1);
 			String nombre = resultados.getString(2);
-			int tipo = resultados.getInt(3);
+			Integer tipo = resultados.getInt(3);
 			LinkedList<Atraccion> atracciones = atraccionesPorPromocion(id);
 
 			if (tipo == 1) {
-				double descuento = resultados.getDouble(4);
+				Double descuento = resultados.getDouble(4);
 				promocionAAgregar = new PromocionAbsoluta(id, nombre, descuento);
 
 				for (Atraccion atraccion : atracciones) {
@@ -62,7 +62,7 @@ public class PromocionDAOImpl {
 			}
 
 			if (tipo == 2) {
-				double descuento = resultados.getDouble(4);
+				Double descuento = resultados.getDouble(4);
 				promocionAAgregar = new PromocionPorcentual(id, nombre, descuento);
 
 				for (Atraccion atraccion : atracciones) {

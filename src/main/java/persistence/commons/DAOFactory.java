@@ -1,6 +1,7 @@
 package persistence.commons;
 
 
+import persistence.AtraccionDAO;
 import persistence.impl.AtraccionDAOImpl;
 import persistence.impl.UsuarioDAOImpl;
 
@@ -10,7 +11,7 @@ public class DAOFactory {
 		return new UsuarioDAOImpl();
 	}
 	
-	public static AtraccionDAOImpl getAttractionDAO() {
+	public static AtraccionDAO getAttractionDAO() {
 		return new AtraccionDAOImpl();
 	}
 }

@@ -14,10 +14,10 @@ public class PromocionPorcentual extends Promocion {
     }
 
     @Override
-    public double getCosto() {
+    public Integer getCosto() {
         double porcentaje = 1 - porcentajeDescuento / 100;
 
-        return costoTotalAtracciones() * porcentaje;
+        return (int) (costoTotalAtracciones() * porcentaje);
     }
 
     @Override

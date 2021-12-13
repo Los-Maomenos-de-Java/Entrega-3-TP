@@ -6,16 +6,17 @@ import java.util.Objects;
 import persistence.impl.AtraccionDAOImpl;
 
 public class Atraccion implements Ofertable {
+	
     private Integer id;
     private String nombre;
-    private Double costoVisita;
+    private Integer costoVisita;
     private Double tiempoPromedio;
     private TipoDeAtraccion tipoDeAtraccion;
     private Integer cupo;
 
     
    
-    public Atraccion(String nombre, Double costoVisita, Double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion, Integer cupo) {
+    public Atraccion(String nombre, Integer costoVisita, Double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion, Integer cupo) {
         super();
     	if (costoVisita < 0) {
             throw new Error("Costo Inválido");
@@ -38,7 +39,7 @@ public class Atraccion implements Ofertable {
     
 
 	
-	public Atraccion(Integer id, String nombre, Double costoVisita, Double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion,Integer cupo) {
+	public Atraccion(Integer id, String nombre, Integer costoVisita, Double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion,Integer cupo) {
 		this(nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
 		this.id = id;
 	}
@@ -46,7 +47,8 @@ public class Atraccion implements Ofertable {
 	@Override
     public void serComprada() {
         this.cupo--;
-        AtraccionDAOImpl.getInstance().update(this);
+        AtraccionDAOImpl atraccionDAOImpl = new AtraccionDAOImpl();
+		atraccionDAOImpl.update(this);
     }
 
     @Override
@@ -56,7 +58,7 @@ public class Atraccion implements Ofertable {
 
     
 	@Override
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
 
@@ -66,17 +68,17 @@ public class Atraccion implements Ofertable {
     }
 
     @Override
-    public double getCosto() {
+    public Integer getCosto() {
         return this.costoVisita;
     }
 
     @Override
-    public double getTiempo() {
+    public Double getTiempo() {
         return this.tiempoPromedio;
     }
 
     @Override
-    public int getCupo() {
+    public Integer getCupo() {
         return this.cupo;
     }
 
@@ -124,12 +126,12 @@ public class Atraccion implements Ofertable {
 		
 	}
 
-	public void setCosto(Double costoVisita) {
+	public void setCosto(Integer costoVisita) {
 		this.costoVisita = costoVisita;
 		
 	}
 
-	public void setiempoPromedio(double tiempoPromedio) {
+	public void setiempoPromedio(Double tiempoPromedio) {
 		this.tiempoPromedio = tiempoPromedio;		
 	}
 

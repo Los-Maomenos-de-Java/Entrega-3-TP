@@ -3,32 +3,37 @@ package services;
 import java.util.List;
 
 import model.Atraccion;
+import model.Boleteria;
+import model.Ofertable;
 import model.TipoDeAtraccion;
+import model.Usuario;
+import persistence.AtraccionDAO;
 import persistence.commons.DAOFactory;
-import persistence.impl.AtraccionDAOImpl;
+
 
 public class AttractionService {
 
-	public List<Atraccion> list() {
-		return DAOFactory.getAttractionDAO().findAll();
+	public List<Ofertable> list(Usuario user2) {
+		Boleteria boleteria = new Boleteria();
+		return boleteria.ofertasOrdenadasPara(user2);
 	}
-
-	public Atraccion create(Integer id, String nombre, Double costoVisita, Double tiempoPromedio,
+	
+	public Atraccion create(Integer id, String nombre, Integer costoVisita, Double tiempoPromedio,
 			TipoDeAtraccion tipoDeAtraccion, Integer cupo) {
 
 		Atraccion attraction = new Atraccion(id, nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
 
-		AtraccionDAOImpl attractionDAO = DAOFactory.getAttractionDAO();
+		AtraccionDAO attractionDAO = DAOFactory.getAttractionDAO();
 		attractionDAO.insert(attraction);
 		// XXX: si no devuelve "1", es que hubo mÃ¡s errores
 
 		return attraction;
 	}
 
-	public Atraccion update(int id, String nombre, double costoVisita, double tiempoPromedio,
+	public Atraccion update(int id, String nombre, Integer costoVisita, double tiempoPromedio,
 			TipoDeAtraccion tipoDeAtraccion, int cupo) {
 
-		AtraccionDAOImpl attractionDAO = DAOFactory.getAttractionDAO();
+		AtraccionDAO attractionDAO = DAOFactory.getAttractionDAO();
 		Atraccion attraction = attractionDAO.find(id);
 
 		attraction.setNombre(nombre);
@@ -44,7 +49,7 @@ public class AttractionService {
 	public void delete(Integer id) {
 		Atraccion attraction = new Atraccion(id, null, null, null, null, null);
 
-		AtraccionDAOImpl attractionDAO = DAOFactory.getAttractionDAO();
+		AtraccionDAO attractionDAO = DAOFactory.getAttractionDAO();
 		attractionDAO.delete(attraction);
 	}
 

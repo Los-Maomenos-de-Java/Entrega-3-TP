@@ -4,7 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="/partials/head.jsp"></jsp:include>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<meta charset="UTF-8">
+<title>Parque de Atracciones Los Simpsons</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link href="../assets/css/styles.css" rel=stylesheet>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 </head>
 <body>
 
@@ -39,7 +45,8 @@
 			</div>
 		</c:if>
 		<table class="table table-stripped table-hover">
-			<thead>
+							
+				<thead>
 				<tr>
 					<th>Atracción</th>
 					<th>Costo</th>
@@ -49,15 +56,15 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${attractions}" var="attraction">
+				<c:forEach items="${attractions}" var="atraccion">
 					<tr>
-						<td><strong><c:out value="${attraction.nombre}"></c:out></strong>
+						<td><strong><c:out value="${atraccion.getNombre()}"></c:out></strong>
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 								Cras pretium eros urna. Sed quis erat congue, bibendum tortor
 								malesuada, iaculis diam. Ut ut imperdiet sapien.</p></td>
-						<td><c:out value="${attraction.costoVisita}"></c:out></td>
-						<td><c:out value="${attraction.tiempoPromedio}"></c:out></td>
-						<td><c:out value="${attraction.cupo}"></c:out></td>
+						<td><c:out value="${atraccion.getCosto()}"></c:out></td>
+						<td><c:out value="${atraccion.getTiempo()}"></c:out></td>
+						<td><c:out value="${atraccion.getCupo()}"></c:out></td>
 
 						<td><c:if test="${user.admin}">
 								<a href="/turismo/attractions/edit.do?id=${attraction.id}"
@@ -70,7 +77,7 @@
 							
 							<c:choose>
 								<c:when
-									test="${user.canAfford(attraction) && user.canAttend(attraction) && attraction.canHost(1)}">
+									test="${user.puedeVisitar(atraccion) && atraccion.tieneCupo()}">
 									<a href="/turismo/attractions/buy.do?id=${attraction.id}"
 										class="btn btn-success rounded" role="button">Comprar</a>
 								</c:when>

@@ -5,11 +5,11 @@ import java.util.List;
 public interface Ofertable {
     String getNombre();
 
-    double getCosto();
+    Integer getCosto();
 
-    double getTiempo();
+    Double getTiempo();
 
-    int getCupo();
+    Integer getCupo();
 
     TipoDeAtraccion getTipo();
 
@@ -21,5 +21,5 @@ public interface Ofertable {
 
     boolean tieneCupo();
 
-	int getId();
+	Integer getId();
 }

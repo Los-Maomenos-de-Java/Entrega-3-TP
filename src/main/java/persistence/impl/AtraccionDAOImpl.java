@@ -8,18 +8,12 @@ import java.util.List;
 
 import model.Atraccion;
 import model.TipoDeAtraccion;
+import persistence.AtraccionDAO;
 import persistence.commons.ConnectionProvider;
 import persistence.commons.MissingDataException;
 
-public class AtraccionDAOImpl {
-	private static AtraccionDAOImpl instance;
+public class AtraccionDAOImpl implements AtraccionDAO {
 
-	public static AtraccionDAOImpl getInstance() {
-		if (instance == null) {
-			instance = new AtraccionDAOImpl();
-		}
-		return instance;
-	}
 
 	public List<Atraccion> findAll() {
 		try {
@@ -80,12 +74,12 @@ public class AtraccionDAOImpl {
 		try {
 			Integer id = resultados.getInt(1);
 			String nombre = resultados.getString(2);
-			Double costoVisita = Double.valueOf(resultados.getDouble(3));
+			Integer costoVisita = resultados.getInt(3);
 			Double tiempoPromedio = resultados.getDouble(4);
-			TipoDeAtraccion tipo = getTipoAtraccion(resultados.getInt(5));
+			TipoDeAtraccion tipoDeAtraccion = AtraccionDAOImpl.getTipoAtraccion(resultados.getInt(5));
 			Integer cupo = resultados.getInt(6);
 
-			return new Atraccion(id, nombre, costoVisita, tiempoPromedio, tipo, cupo);
+			return new Atraccion(id, nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
 
 		} catch (Exception e) {
 			throw new MissingDataException(e);
@@ -143,6 +137,12 @@ public class AtraccionDAOImpl {
 			throw new MissingDataException(e);
 		}
 	}
+
+		@Override
+		public int countAll() {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 
 
 
