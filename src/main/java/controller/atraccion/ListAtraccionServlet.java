@@ -30,10 +30,7 @@ public class ListAtraccionServlet extends HttpServlet implements Servlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Usuario user3 = (Usuario) req.getSession().getAttribute("user");
-		System.out.println(user3);
 		List<Ofertable> attractions = attractionService.list(user3);
-		System.out.println(attractions);
-		System.out.println(user3.getTipoDeAtraccionPreferida());
 		req.setAttribute("attractions", attractions);
 
 		RequestDispatcher dispatcher = getServletContext()
