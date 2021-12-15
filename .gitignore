@@ -15,3 +15,5 @@ target/
 *.iws
 *.ipr
 .idea
+target/m2e-wtp/web-resources/META-INF/MANIFEST.MF
+target/m2e-wtp/web-resources/META-INF/maven/losmasomenosdejava/tp3/pom.properties
