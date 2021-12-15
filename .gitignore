@@ -4,6 +4,9 @@ bin
 .project
 .metadata
 
+#Conexion a la BD
+src/main/resources/env.properties
+
 # Maven 
 target/
 
