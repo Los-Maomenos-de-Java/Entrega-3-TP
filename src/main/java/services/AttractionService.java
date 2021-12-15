@@ -18,8 +18,8 @@ public class AttractionService {
 		return boleteria.ofertasOrdenadasPara(user2);
 	}
 	
-	public Atraccion create(Integer id, String nombre, Integer costoVisita, Double tiempoPromedio,
-			TipoDeAtraccion tipoDeAtraccion, Integer cupo) {
+	public Atraccion create(Integer id, String nombre, Integer costoVisita, Double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion,
+			Integer cupo) {
 
 		Atraccion attraction = new Atraccion(id, nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
 
@@ -30,12 +30,12 @@ public class AttractionService {
 		return attraction;
 	}
 
-	public Atraccion update(int id, String nombre, Integer costoVisita, double tiempoPromedio,
+	public Atraccion update(Integer id, String nombre, Integer costoVisita, double tiempoPromedio,
 			TipoDeAtraccion tipoDeAtraccion, int cupo) {
 
 		AtraccionDAO attractionDAO = DAOFactory.getAttractionDAO();
 		Atraccion attraction = attractionDAO.find(id);
-
+		
 		attraction.setNombre(nombre);
 		attraction.setCosto(costoVisita);
 		attraction.setiempoPromedio(tiempoPromedio);
@@ -51,6 +51,11 @@ public class AttractionService {
 
 		AtraccionDAO attractionDAO = DAOFactory.getAttractionDAO();
 		attractionDAO.delete(attraction);
+	}
+
+
+	public Atraccion find(Integer id) {
+		return DAOFactory.getAttractionDAO().find(id);
 	}
 
 

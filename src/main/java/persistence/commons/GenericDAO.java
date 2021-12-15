@@ -2,6 +2,9 @@ package persistence.commons;
 
 import java.util.List;
 
+import model.Atraccion;
+import model.Usuario;
+
 public interface GenericDAO<T> {
 
 	public T find(Integer id);

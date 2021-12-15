@@ -120,6 +120,8 @@ public class Atraccion implements Ofertable {
                 ", Tipo de Atraccion=" + tipoDeAtraccion +
                 " }";
     }
+    
+    
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;

@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.Atraccion;
+
 import model.TipoDeAtraccion;
 import persistence.AtraccionDAO;
 import persistence.commons.ConnectionProvider;
@@ -36,16 +37,17 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 
 	public int insert(Atraccion attraction) {
 		try {
-			String sql = "INSERT INTO ATRACCIONES (ID, NOMBRE, COSTO, TIEMPO, TIPO_ATRACCION, CUPO) VALUES (?, ?, ?, ?, ?,?)";
+			String sql = "INSERT INTO ATRACCIONES (id, nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo) VALUES (?, ?, ?, ?, ?,?)";
 			Connection conn = ConnectionProvider.getConnection();
 
 			PreparedStatement statement = conn.prepareStatement(sql);
 			int i = 1;
 			statement.setInt(i++, attraction.getId());
 			statement.setString(i++, attraction.getNombre());
-			statement.setDouble(i++, attraction.getCosto());
+			statement.setInt(i++, attraction.getCosto());
 			statement.setDouble(i++, attraction.getTiempo());
-			statement.setObject(i++, attraction.getTipo());
+			statement.setInt(i++, this.getIdTipoAtraccionPorNombre(attraction.getTipo()));
+			statement.setInt(i++, attraction.getCupo());
 			
 			int rows = statement.executeUpdate();
 
@@ -55,16 +57,22 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 		}
 	}
 
-	public int update(Atraccion atraccion) {
+	public int update(Atraccion attraction) {
 		try {
-			String updateAtraccion = "UPDATE atracciones SET cupo = ? WHERE id = ?";
+			String sql = "UPDATE ATTRACTIONS SET nombre = ?, costoVisita = ?, tiempoPromedio = ?, tipoDeAtraccion = ?, cupo = ? WHERE ID = ?";
 			Connection conn = ConnectionProvider.getConnection();
 
-			PreparedStatement statement = conn.prepareStatement(updateAtraccion);
-			statement.setInt(1, atraccion.getCupo());
-			statement.setInt(2, atraccion.getId());
+			PreparedStatement statement = conn.prepareStatement(sql);
+			int i = 1;
+			statement.setString(i++, attraction.getNombre());
+			statement.setInt(i++, attraction.getCosto());
+			statement.setDouble(i++, attraction.getTiempo());
+			statement.setInt(i++, attraction.getCupo());
+			statement.setInt(i++, this.getIdTipoAtraccionPorNombre(attraction.getTipo()));
+			statement.setInt(i++, attraction.getId());
+			int rows = statement.executeUpdate();
 
-			return statement.executeUpdate();
+			return rows;
 		} catch (Exception e) {
 			throw new MissingDataException(e);
 		}
@@ -102,10 +110,27 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			throw new MissingDataException(e);
 		}
 	}
+	
+	public static Integer getIdTipoAtraccionPorNombre(TipoDeAtraccion nombre) {
+		try {
+			String idTipoAtraccion = "SELECT id FROM tipos_de_atraccion WHERE nombre = ?";
+
+			Connection conn = ConnectionProvider.getConnection();
+
+			PreparedStatement statement = conn.prepareStatement(idTipoAtraccion);
+			statement.setObject(1, nombre);
+
+			ResultSet resultados = statement.executeQuery();
+			return resultados.getInt(1);
+
+		} catch (Exception e) {
+			throw new MissingDataException(e);
+		}
+	}
 
 	public Atraccion find(Integer id) {
 		try {
-			String sql = "SELECT * FROM ATRACCIONES WHERE id = ?";
+			String sql = "SELECT * FROM atracciones WHERE id = ?";
 			Connection conn = ConnectionProvider.getConnection();
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, id);

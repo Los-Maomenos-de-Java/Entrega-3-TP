@@ -60,8 +60,16 @@ public class Usuario {
 		return admin;
 	}
     
-	public Boolean isAdmin() {
-		return admin;
+    public Boolean isAdmin() {
+    	return this.admin;
+    }
+
+	@Override
+	public String toString() {
+		return "Usuario [nombre=" + nombre + ", id=" + id + ", password=" + password + ", presupuestoActual="
+				+ presupuestoActual + ", tiempoDisponible=" + tiempoDisponible + ", PRESUPUESTO_INICIAL="
+				+ PRESUPUESTO_INICIAL + ", TIEMPO_INICIAL=" + TIEMPO_INICIAL + ", tipoDeAtraccionPreferida="
+				+ tipoDeAtraccionPreferida + ", ofertasCompradas=" + ofertasCompradas + ", admin=" + admin + "]";
 	}
 
 	public String getPassword() {

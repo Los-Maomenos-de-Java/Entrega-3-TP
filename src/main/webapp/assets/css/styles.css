@@ -119,3 +119,7 @@ input{
 .menu ul li:hover {
     color: red;
 }
+
+.fa-solid fa-pen-to-square{
+	font-size:15px;
+}

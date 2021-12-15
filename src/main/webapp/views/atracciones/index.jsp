@@ -8,9 +8,9 @@
 <meta charset="UTF-8">
 <title>Parque de Atracciones Los Simpsons</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<link href="/tp3/assets/css/styles.css" rel=stylesheet>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+<link href="/tp3/assets/css/styles.css" rel=stylesheet>
 </head>
 <body>
 
@@ -39,7 +39,7 @@
 
 		<c:if test="${user.isAdmin()}">
 			<div class="mb-3">
-				<a href="/turismo/attractions/create.do" class="btn btn-primary"
+				<a href="/tp3/attractions/create.do" class="btn btn-primary"
 					role="button"> <i class="bi bi-plus-lg"></i> Nueva Atracción
 				</a>
 			</div>
@@ -67,12 +67,11 @@
 						<td><c:out value="${atraccion.getCupo()}"></c:out></td>
 
 						<td><c:if test="${user.admin}">
-								<a href="/turismo/attractions/edit.do?id=${attraction.id}"
-									class="btn btn-light rounded-0" role="button"><i
-									class="bi bi-pencil-fill"></i></a>
-								<a href="/turismo/attractions/delete.do?id=${attraction.id}"
-									class="btn btn-danger rounded" role="button"><i
-									class="bi bi-x-circle-fill"></i></a>
+								
+									<a href="/tp3/attractions/edit.do?id=${attraction.id}"
+									 role="button"><i class="fa fa-edit" style="font-size:30px"></i></a>
+								<a href="/tp3/attractions/delete.do?id=${attraction.id}"
+									 role="button"><i class="fa fa-trash-o" style="font-size:30px;color:red"></i></a>
 							</c:if> 
 							
 							<c:choose>
