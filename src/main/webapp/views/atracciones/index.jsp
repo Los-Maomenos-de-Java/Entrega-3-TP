@@ -68,7 +68,7 @@
 
 						<td><c:if test="${user.admin}">
 								
-									<a href="/tp3/attractions/edit.do?id=${attraction.id}"
+									<a href="/tp3/attractions/edit.do?id=${atraccion.getId()}"
 									 role="button"><i class="fa fa-edit" style="font-size:30px"></i></a>
 								<a href="/tp3/attractions/delete.do?id=${attraction.id}"
 									 role="button"><i class="fa fa-trash-o" style="font-size:30px;color:red"></i></a>
@@ -77,7 +77,7 @@
 							<c:choose>
 								<c:when
 									test="${user.puedeVisitar(atraccion) && atraccion.tieneCupo()}">
-									<a href="/turismo/attractions/buy.do?id=${attraction.id}"
+									<a href="/turismo/attractions/buy.do?id=${atraccion.id}"
 										class="btn btn-success rounded" role="button">Comprar</a>
 								</c:when>
 								<c:otherwise>

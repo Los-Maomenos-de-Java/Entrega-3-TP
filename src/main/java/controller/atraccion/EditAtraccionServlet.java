@@ -26,9 +26,9 @@ public class EditAtraccionServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Integer id = Integer.parseInt(req.getParameter("id"));
+		Integer id2 = Integer.valueOf(req.getParameter("id"));
 
-		Atraccion attraction = attractionService.find(id);
+		Atraccion attraction = attractionService.find(id2);
 		req.setAttribute("attraction", attraction);
 
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/views/atracciones/edit.jsp");
@@ -46,7 +46,7 @@ public class EditAtraccionServlet extends HttpServlet {
 
 		Atraccion attraction = attractionService.update(id, nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
 
-		resp.sendRedirect("/turismo/attractions/index.do");
+		resp.sendRedirect("/tp3/atracciones/index.do");
 
 	}
 }

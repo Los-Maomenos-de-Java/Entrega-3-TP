@@ -31,7 +31,7 @@ public class AttractionService {
 	}
 
 	public Atraccion update(Integer id, String nombre, Integer costoVisita, double tiempoPromedio,
-			TipoDeAtraccion tipoDeAtraccion, int cupo) {
+			TipoDeAtraccion tipoDeAtraccion, Integer cupo) {
 
 		AtraccionDAO attractionDAO = DAOFactory.getAttractionDAO();
 		Atraccion attraction = attractionDAO.find(id);
@@ -40,6 +40,7 @@ public class AttractionService {
 		attraction.setCosto(costoVisita);
 		attraction.setiempoPromedio(tiempoPromedio);
 		attraction.settipoDeAtraccion(tipoDeAtraccion);
+		attraction.setCupo(cupo);
 
 		attractionDAO.update(attraction);
 
