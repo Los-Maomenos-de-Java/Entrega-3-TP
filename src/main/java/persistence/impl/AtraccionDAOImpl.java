@@ -150,7 +150,7 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 
 		public int delete(Atraccion attraction) {
 		try {
-			String sql = "DELETE FROM ATRACCIONES WHERE ID = ?";
+			String sql = "DELETE FROM atracciones WHERE ID = ?";
 			Connection conn = ConnectionProvider.getConnection();
 
 			PreparedStatement statement = conn.prepareStatement(sql);

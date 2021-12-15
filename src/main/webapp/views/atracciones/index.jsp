@@ -70,7 +70,7 @@
 								
 									<a href="/tp3/attractions/edit.do?id=${atraccion.getId()}"
 									 role="button"><i class="fa fa-edit" style="font-size:30px"></i></a>
-								<a href="/tp3/attractions/delete.do?id=${attraction.id}"
+								<a href="/tp3/attractions/delete.do?id=${atraccion.getId()}"
 									 role="button"><i class="fa fa-trash-o" style="font-size:30px;color:red"></i></a>
 							</c:if> 
 							
