@@ -43,7 +43,6 @@ public class Usuario {
 		presupuestoActual -= ofertable.getCosto();
 		tiempoDisponible -= ofertable.getTiempo();
 		ofertasCompradas.add(ofertable);
-		this.ofertasCompradas.add(1, ofertable);
 		return ofertasCompradas.toString();
 
 	}

@@ -22,4 +22,6 @@ public interface Ofertable {
     boolean tieneCupo();
 
 	Integer getId();
+
+	Boolean esAtraccion();
 }

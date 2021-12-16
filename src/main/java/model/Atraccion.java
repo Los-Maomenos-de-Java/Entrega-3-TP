@@ -140,4 +140,9 @@ public class Atraccion implements Ofertable {
 		this.cupo = cupo;
 	}
 
+	@Override
+	public Boolean esAtraccion() {
+		return true;
+	}
+
 }

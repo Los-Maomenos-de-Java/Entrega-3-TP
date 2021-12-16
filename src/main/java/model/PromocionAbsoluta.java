@@ -29,4 +29,9 @@ public class PromocionAbsoluta extends Promocion {
                 " Tiempo: " + this.getTiempo() +
                 " }";
     }
+
+	@Override
+	public Boolean esAtraccion() {
+		return false;
+	}
 }

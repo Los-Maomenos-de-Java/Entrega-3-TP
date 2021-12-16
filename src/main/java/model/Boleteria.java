@@ -86,6 +86,13 @@ public class Boleteria {
 	public List<Ofertable> getOfertables() {
 		return ofertables;
 	}
+
+	public List<Ofertable> promocionesOrdenadasPara(Usuario user2) {
+	       this.ofertasParaUsuario.addAll(ofertables);
+	        this.ofertasParaUsuario.sort(new OrdenadorDeOfertas(user2.getTipoDeAtraccionPreferida()));
+	        this.ofertasParaUsuario.removeIf((ofertable ->ofertable.esAtraccion()));
+	        return this.ofertasParaUsuario;
+	}
     
     
 }

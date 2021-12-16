@@ -31,4 +31,9 @@ public class PromocionPorcentual extends Promocion {
                 "Tiempo: " + this.getTiempo() +
                 " }";
     }
+
+	@Override
+	public Boolean esAtraccion() {
+		return false;
+	}
 }
