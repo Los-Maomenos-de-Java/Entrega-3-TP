@@ -121,6 +121,13 @@ input{
     color: red;
 }
 
-.fa-solid fa-pen-to-square{
-	font-size:15px;
+section.carrusel{
+    position: relative;
 }
+
+
+section.carrusel img{
+    max-height: 80vh;
+}
+
+

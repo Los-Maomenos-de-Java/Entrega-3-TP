@@ -1,5 +1,6 @@
 package persistence.impl;
 
+import persistence.UsuarioDAO;
 import persistence.commons.ConnectionProvider;
 import persistence.commons.MissingDataException;
 import model.TipoDeAtraccion;
@@ -12,15 +13,7 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-public class UsuarioDAOImpl {
-	private static UsuarioDAOImpl instance;
-
-	public static UsuarioDAOImpl getInstance() {
-		if (instance == null) {
-			instance = new UsuarioDAOImpl();
-		}
-		return instance;
-	}
+public class UsuarioDAOImpl implements UsuarioDAO {
 
 	public List<Usuario> findAll() {
 		try {
@@ -118,6 +111,24 @@ public class UsuarioDAOImpl {
 		} catch (Exception e) {
 			throw new MissingDataException(e);
 		}
+	}
+
+	@Override
+	public int countAll() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insert(Usuario t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(Usuario t) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
