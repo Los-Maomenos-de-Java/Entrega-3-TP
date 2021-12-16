@@ -33,14 +33,14 @@ public class CreateAtraccionServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Integer id = Integer.parseInt(req.getParameter("id"));
+		//Integer id = Integer.parseInt(req.getParameter("id"));
 		String nombre = req.getParameter("nombre");
 		Integer costoVisita = Integer.parseInt(req.getParameter("costoVisita"));
 		Double tiempoPromedio = Double.parseDouble(req.getParameter("tiempoPromedio"));
 		TipoDeAtraccion tipoDeAtraccion = TipoDeAtraccion.valueOf(req.getParameter("tipoDeAtraccion"));
 		Integer cupo = Integer.parseInt(req.getParameter("cupo"));
 
-		Atraccion attraction = attractionService.create(id, nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
+		Atraccion attraction = attractionService.create(nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
 
 		resp.sendRedirect("/tp3/atracciones/index.do");
 	}

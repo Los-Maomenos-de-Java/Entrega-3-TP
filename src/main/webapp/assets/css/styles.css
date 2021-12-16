@@ -56,8 +56,9 @@ input{
 }
 
 .menu a{
-    display: inline-block;
     max-width: 63%;
+    text-decoration:none;
+    color:#2f2c2d;
 }
 
 .menu img {
@@ -116,7 +117,7 @@ input{
     width: 140px;
 }
 
-.menu ul li:hover {
+.menu ul li a:hover {
     color: red;
 }
 

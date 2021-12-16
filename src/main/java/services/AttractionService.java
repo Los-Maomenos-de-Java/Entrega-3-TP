@@ -12,16 +12,18 @@ import persistence.commons.DAOFactory;
 
 
 public class AttractionService {
+	
+	private Boleteria boleteria = new Boleteria();
 
 	public List<Ofertable> list(Usuario user2) {
-		Boleteria boleteria = new Boleteria();
+		
 		return boleteria.ofertasOrdenadasPara(user2);
 	}
 	
-	public Atraccion create(Integer id, String nombre, Integer costoVisita, Double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion,
+	public Atraccion create(String nombre, Integer costoVisita, Double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion,
 			Integer cupo) {
 
-		Atraccion attraction = new Atraccion(id, nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
+		Atraccion attraction = new Atraccion(nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
 
 		AtraccionDAO attractionDAO = DAOFactory.getAttractionDAO();
 		attractionDAO.insert(attraction);

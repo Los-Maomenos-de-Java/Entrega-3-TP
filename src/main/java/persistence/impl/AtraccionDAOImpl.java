@@ -37,12 +37,11 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 
 	public int insert(Atraccion attraction) {
 		try {
-			String sql = "INSERT INTO ATRACCIONES (id, nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo) VALUES (?, ?, ?, ?, ?,?)";
+			String sql = "INSERT INTO ATRACCIONES (nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo) VALUES (?, ?, ?, ?,?)";
 			Connection conn = ConnectionProvider.getConnection();
 
 			PreparedStatement statement = conn.prepareStatement(sql);
 			int i = 1;
-			statement.setInt(i++, attraction.getId());
 			statement.setString(i++, attraction.getNombre());
 			statement.setInt(i++, attraction.getCosto());
 			statement.setDouble(i++, attraction.getTiempo());

@@ -45,7 +45,7 @@ public class Boleteria {
     public List<Ofertable> ofertasOrdenadasPara(Usuario usuario) {
         this.ofertasParaUsuario.addAll(ofertables);
         this.ofertasParaUsuario.sort(new OrdenadorDeOfertas(usuario.getTipoDeAtraccionPreferida()));
-        this.ofertasFiltradasPara(usuario);
+        //this.ofertasFiltradasPara(usuario);
         return this.ofertasParaUsuario;
     }
 

@@ -2,7 +2,7 @@
 
 <div class="mb-3">
 	<label for="id" class="col-form-label">Id:</label> <input
-		type="number" class="form-control" id="id" name="id"
+		type="number" readonly class="form-control" id="id" name="id"
 		required value="${attraction.getId()}">
 </div>
 <div class="mb-3">
