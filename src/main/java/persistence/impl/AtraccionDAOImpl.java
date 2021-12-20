@@ -7,10 +7,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.Atraccion;
-
+import model.Ofertable;
 import model.TipoDeAtraccion;
 import persistence.AtraccionDAO;
 import persistence.commons.ConnectionProvider;
+import persistence.commons.DAOFactory;
 import persistence.commons.MissingDataException;
 
 public class AtraccionDAOImpl implements AtraccionDAO {
@@ -35,9 +36,10 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 		}
 	}
 
+	@Override
 	public int insert(Atraccion attraction) {
 		try {
-			String sql = "INSERT INTO ATRACCIONES (nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo) VALUES (?, ?, ?, ?,?)";
+			String sql = "INSERT INTO ATRACCIONES (nombre, costoVisita, tiempoPromedio, tipos_de_atraccion, cupo) VALUES (?, ?, ?, ?,?)";
 			Connection conn = ConnectionProvider.getConnection();
 
 			PreparedStatement statement = conn.prepareStatement(sql);
@@ -45,7 +47,7 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			statement.setString(i++, attraction.getNombre());
 			statement.setInt(i++, attraction.getCosto());
 			statement.setDouble(i++, attraction.getTiempo());
-			statement.setInt(i++, this.getIdTipoAtraccionPorNombre(attraction.getTipo()));
+			statement.setInt(i++, attraction.getTipo().getIdTipoAtraccion());
 			statement.setInt(i++, attraction.getCupo());
 			
 			int rows = statement.executeUpdate();
@@ -55,7 +57,8 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			throw new MissingDataException(e);
 		}
 	}
-
+	
+	@Override
 	public int update(Atraccion attraction) {
 		try {
 			String sql = "UPDATE atracciones SET nombre = ?, costoVisita = ?, tiempoPromedio = ?, tipoDeAtraccion = ?, cupo = ? WHERE ID = ?";
@@ -66,9 +69,10 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			statement.setString(i++, attraction.getNombre());
 			statement.setInt(i++, attraction.getCosto());
 			statement.setDouble(i++, attraction.getTiempo());
+			statement.setInt(i++, attraction.getTipo().getIdTipoAtraccion());
 			statement.setInt(i++, attraction.getCupo());
-			statement.setInt(i++, this.getIdTipoAtraccionPorNombre(attraction.getTipo()));
 			statement.setInt(i++, attraction.getId());
+			
 			int rows = statement.executeUpdate();
 
 			return rows;
@@ -83,10 +87,11 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			String nombre = resultados.getString(2);
 			Integer costoVisita = resultados.getInt(3);
 			Double tiempoPromedio = resultados.getDouble(4);
-			TipoDeAtraccion tipoDeAtraccion = AtraccionDAOImpl.getTipoAtraccion(resultados.getInt(5));
 			Integer cupo = resultados.getInt(6);
+			TipoDeAtraccion tipoAtraccion = DAOFactory.getTipoAtraccionDAO().find(id);
 
-			return new Atraccion(id, nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
+
+			return new Atraccion(id, nombre, costoVisita, tiempoPromedio, tipoAtraccion, cupo);
 
 		} catch (Exception e) {
 			throw new MissingDataException(e);
@@ -103,14 +108,15 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			statement.setInt(1, id);
 
 			ResultSet resultados = statement.executeQuery();
-			return TipoDeAtraccion.valueOf(resultados.getString(1));
+			TipoDeAtraccion resultados2 = (TipoDeAtraccion) resultados.getObject(1); 
+			return resultados2;
 
 		} catch (Exception e) {
 			throw new MissingDataException(e);
 		}
 	}
 	
-	public static Integer getIdTipoAtraccionPorNombre(TipoDeAtraccion nombre) {
+	public Integer getIdTipoAtraccionPorNombre(TipoDeAtraccion nombre) {
 		try {
 			String idTipoAtraccion = "SELECT id FROM tipos_de_atraccion WHERE nombre = ?";
 
@@ -146,7 +152,7 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			throw new MissingDataException(e);
 		}
 	}
-
+		@Override
 		public int delete(Atraccion attraction) {
 		try {
 			String sql = "DELETE FROM atracciones WHERE ID = ?";

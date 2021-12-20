@@ -39,11 +39,11 @@ public class Usuario {
 		this.admin = admin;
 	}
 
-	public String comprarOferta(Ofertable ofertable) {
+	public void comprarOferta(Ofertable ofertable) {
 		presupuestoActual -= ofertable.getCosto();
 		tiempoDisponible -= ofertable.getTiempo();
 		ofertasCompradas.add(ofertable);
-		return ofertasCompradas.toString();
+		ofertable.serComprada();
 
 	}
 

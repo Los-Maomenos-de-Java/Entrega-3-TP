@@ -41,10 +41,10 @@ public class EditAtraccionServlet extends HttpServlet {
 		String nombre = req.getParameter("nombre");
 		Integer costoVisita = Integer.parseInt(req.getParameter("costoVisita"));
 		Double tiempoPromedio = Double.parseDouble(req.getParameter("tiempoPromedio"));
-		TipoDeAtraccion tipoDeAtraccion = TipoDeAtraccion.valueOf(req.getParameter("tipoDeAtraccion"));
+		Integer tipoDeAtraccion = Integer.parseInt(req.getParameter("tipoDeAtraccion"));
 		Integer cupo = Integer.parseInt(req.getParameter("cupo"));
 
-		Atraccion attraction = attractionService.update(id, nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
+		Atraccion attraction = attractionService.update(id, nombre, costoVisita, tiempoPromedio,  tipoDeAtraccion, cupo);
 
 		resp.sendRedirect("/tp3/atracciones/index.do");
 

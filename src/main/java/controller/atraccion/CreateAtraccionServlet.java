@@ -37,10 +37,10 @@ public class CreateAtraccionServlet extends HttpServlet {
 		String nombre = req.getParameter("nombre");
 		Integer costoVisita = Integer.parseInt(req.getParameter("costoVisita"));
 		Double tiempoPromedio = Double.parseDouble(req.getParameter("tiempoPromedio"));
-		TipoDeAtraccion tipoDeAtraccion = TipoDeAtraccion.valueOf(req.getParameter("tipoDeAtraccion"));
+		Integer tipoAtraccion = Integer.parseInt(req.getParameter("tipoAtraccion"));
 		Integer cupo = Integer.parseInt(req.getParameter("cupo"));
 
-		Atraccion attraction = attractionService.create(nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo);
+		Atraccion attraction = attractionService.create(nombre, costoVisita, tiempoPromedio, tipoAtraccion, cupo);
 
 		resp.sendRedirect("/tp3/atracciones/index.do");
 	}

@@ -14,7 +14,7 @@ public class Atraccion implements Ofertable {
 	private TipoDeAtraccion tipoDeAtraccion;
 	private Integer cupo;
 
-	public Atraccion(String nombre, Integer costoVisita, Double tiempoPromedio, TipoDeAtraccion tipoDeAtraccion,
+	public Atraccion(String nombre, Integer costoVisita, Double tiempoPromedio, TipoDeAtraccion tipoAtraccion, 
 			Integer cupo) {
 		super();
 		if (costoVisita < 0) {
@@ -32,7 +32,6 @@ public class Atraccion implements Ofertable {
 		this.nombre = nombre;
 		this.costoVisita = costoVisita;
 		this.tiempoPromedio = tiempoPromedio;
-		this.tipoDeAtraccion = tipoDeAtraccion;
 		this.cupo = cupo;
 	}
 
@@ -144,5 +143,10 @@ public class Atraccion implements Ofertable {
 	public Boolean esAtraccion() {
 		return true;
 	}
+	
+	public Integer getIdTipoAtraccion() {
+		return this.tipoDeAtraccion.getIdTipoAtraccion();
+	}
+
 
 }

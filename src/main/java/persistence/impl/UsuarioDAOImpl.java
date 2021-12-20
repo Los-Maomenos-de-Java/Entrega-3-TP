@@ -2,6 +2,7 @@ package persistence.impl;
 
 import persistence.UsuarioDAO;
 import persistence.commons.ConnectionProvider;
+import persistence.commons.DAOFactory;
 import persistence.commons.MissingDataException;
 import model.TipoDeAtraccion;
 import model.Usuario;
@@ -41,13 +42,14 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 			String password = resultados.getString(3);
 			double presupuesto = resultados.getDouble(4);
 			double tiempo_disponible = resultados.getDouble(5);
-			TipoDeAtraccion tipo_atraccion_preferida = AtraccionDAOImpl.getTipoAtraccion(resultados.getInt(6));
-			boolean admin = resultados.getBoolean(7);
+			boolean admin = resultados.getBoolean(6);
+			TipoDeAtraccion tipoAtraccion = DAOFactory.getTipoAtraccionDAO().find(resultados.getInt("id"));
+
 
 			Usuario usuario = new Usuario(id, nombre, password, presupuesto, tiempo_disponible,
-					tipo_atraccion_preferida, admin);
+					tipoAtraccion, admin);
 
-			usuario.setOfertasCompradas(ItinerarioDAOImpl.getInstance().itinerarioDe(usuario).getOfertas());
+			
 
 			return usuario;
 

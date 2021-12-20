@@ -10,7 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Ofertable;
+import model.Atraccion;
 import model.Usuario;
 import services.AttractionService;
 
@@ -30,7 +30,8 @@ public class ListAtraccionServlet extends HttpServlet implements Servlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		Usuario user3 = (Usuario) req.getSession().getAttribute("user");
-		List<Ofertable> attractions = attractionService.list(user3);
+		System.out.println(user3);
+		List<Atraccion> attractions = attractionService.list(user3);
 		req.setAttribute("attractions", attractions);
 
 		RequestDispatcher dispatcher = getServletContext()

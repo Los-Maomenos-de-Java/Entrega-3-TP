@@ -62,7 +62,7 @@
 					<td><c:out value="${user.getPresupuestoActual()}"></c:out></td>
 					<td><c:out value="${user.getTiempoDisponible()}"></c:out></td>
 					<td><c:out value="${user.getTipoDeAtraccionPreferida()}"></c:out></td>
-					<td><c:out value="${user.getOfertasCompradas()}"></c:out></td>
+					<td><c:out value="${user.getOfertasCompradas()}"></c:out><img class="chiste" src="/tp3/assets/images/viejo.png"></td>
 				</tr>
 			</tbody>
 		</table>
