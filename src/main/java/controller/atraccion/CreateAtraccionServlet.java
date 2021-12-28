@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Atraccion;
 import model.TipoDeAtraccion;
+import persistence.TipoAtraccionDAO;
+import persistence.commons.DAOFactory;
 import services.AttractionService;
 
 @WebServlet("/attractions/create.do")
@@ -33,15 +35,17 @@ public class CreateAtraccionServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//Integer id = Integer.parseInt(req.getParameter("id"));
 		String nombre = req.getParameter("nombre");
 		Integer costoVisita = Integer.parseInt(req.getParameter("costoVisita"));
 		Double tiempoPromedio = Double.parseDouble(req.getParameter("tiempoPromedio"));
-		Integer tipoAtraccion = Integer.parseInt(req.getParameter("tipoAtraccion"));
+		Integer tipoDeAtraccion = Integer.parseInt(req.getParameter("tipoDeAtraccion"));
 		Integer cupo = Integer.parseInt(req.getParameter("cupo"));
-
-		Atraccion attraction = attractionService.create(nombre, costoVisita, tiempoPromedio, tipoAtraccion, cupo);
-
+		
+		TipoAtraccionDAO tipoAtraccionDAO = DAOFactory.getTipoAtraccionDAO();
+		TipoDeAtraccion tipo = tipoAtraccionDAO.find(tipoDeAtraccion);
+	
+		
+		Atraccion attraction = attractionService.create(nombre, costoVisita, tiempoPromedio, tipo, cupo);
 		resp.sendRedirect("/tp3/atracciones/index.do");
 	}
 

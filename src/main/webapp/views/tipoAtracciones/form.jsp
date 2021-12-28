@@ -21,16 +21,14 @@
 		value="${attraction.getTiempo()}"></input>
 </div>
 <div class="mb-3">
-
-	<label for="tipoDeAtraccion" class="col-form-label">Tipo de Atraccion:</label>
-
-	 <select class="form-control" name="tipoDeAtraccion"
-		id="tipoDeAtraccion" required>
-		<c:forEach items="${tipoattractions}" var="tipo">
-			<option value="${tipo.getIdTipoAtraccion()}"><c:out value="${tipo.getNombre()}"></c:out></option>
+		<label for="tipoAtraccion" class="col-form-label">Tipo de
+			Atraccion:</label> <select class="form-control" name="tipoDeAtraccion"
+			id="tipoDeAtraccion" required>
+			<c:forEach items="${tipoattractions}" var="tipoatraccion">
+			<option value="${tipoatraccion.getId()}"><c:out value="${atraccion.getNombre()}"></c:out></option>
 			</c:forEach>
 		</select>
-</div>
+	</div>
 <div class="mb-3">
 	<label for="capacity">Cupo:</label> <input class="form-control"
 		type="number" id="capacity" name="cupo" required

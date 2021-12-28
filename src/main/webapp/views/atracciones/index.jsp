@@ -33,7 +33,7 @@
 
 		<c:if test="${user.isAdmin()}">
 			<div class="mb-3">
-				<a href="/tp3/attractions/create.do" class="btn btn-primary"
+				<a href="/tp3/atracciones/create.do" class="btn btn-primary"
 					role="button"> <i class="bi bi-plus-lg"></i> Nueva Atracción
 				</a>
 			</div>

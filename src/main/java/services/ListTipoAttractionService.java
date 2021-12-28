@@ -10,18 +10,17 @@ import model.Usuario;
 import persistence.AtraccionDAO;
 import persistence.commons.DAOFactory;
 
-public class AttractionService {
+public class ListTipoAttractionService {
 	
-	private List<Atraccion> atracciones = new LinkedList<Atraccion>();
+	private List<TipoDeAtraccion> tipoatracciones = new LinkedList<TipoDeAtraccion>();
 
-	public List<Atraccion> list(Usuario user2) {
+	public List<TipoDeAtraccion> list() {
 
-		atracciones.removeAll(atracciones);
-		List<Atraccion> atracciones = DAOFactory.getAttractionDAO().findAll();
-		atracciones.sort(new OrdenadorDeOfertas(user2.getTipoDeAtraccionPreferida()));
-		return atracciones;
+		tipoatracciones.removeAll(tipoatracciones);
+		List<TipoDeAtraccion> tipoatracciones = DAOFactory.getTipoAtraccionDAO().findAll();
+		return tipoatracciones;
 	}
-
+/*
 	public Atraccion create(String nombre, Integer costoVisita, Double tiempoPromedio, TipoDeAtraccion tipo,
 			Integer cupo) {
 
@@ -35,17 +34,19 @@ public class AttractionService {
 		return attraction;
 	}
 
-	public Atraccion update(Integer id, String nombre, Integer costoVisita, double tiempoPromedio, TipoDeAtraccion TipoAtraccion,
+	public Atraccion update(Integer id, String nombre, Integer costoVisita, double tiempoPromedio, Integer idTipoAtraccion,
 			 Integer cupo) {
 
 		AtraccionDAO attractionDAO = DAOFactory.getAttractionDAO();
 		Atraccion attraction = attractionDAO.find(id);
+		
+		TipoDeAtraccion tipoAtraccionDAO = DAOFactory.getTipoAtraccionDAO().find(idTipoAtraccion);
 	
 
 		attraction.setNombre(nombre);
 		attraction.setCosto(costoVisita);
 		attraction.setiempoPromedio(tiempoPromedio);
-		attraction.settipoDeAtraccion(TipoAtraccion);
+		attraction.settipoDeAtraccion(tipoAtraccionDAO);
 		attraction.setCupo(cupo);
 
 		attractionDAO.update(attraction);
@@ -63,5 +64,6 @@ public class AttractionService {
 	public Atraccion find(Integer id) {
 		return DAOFactory.getAttractionDAO().find(id);
 	}
-
+*/
 }
+	

@@ -16,12 +16,10 @@ import persistence.commons.MissingDataException;
 
 public class AtraccionDAOImpl implements AtraccionDAO {
 
-
 	public List<Atraccion> findAll() {
 		try {
 			String allAtracciones = "SELECT * FROM atracciones";
 			Connection conn = ConnectionProvider.getConnection();
-
 			PreparedStatement statement = conn.prepareStatement(allAtracciones);
 			ResultSet resultados = statement.executeQuery();
 
@@ -39,7 +37,7 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 	@Override
 	public int insert(Atraccion attraction) {
 		try {
-			String sql = "INSERT INTO ATRACCIONES (nombre, costoVisita, tiempoPromedio, tipos_de_atraccion, cupo) VALUES (?, ?, ?, ?,?)";
+			String sql = "INSERT INTO ATRACCIONES (nombre, costoVisita, tiempoPromedio, tipoDeAtraccion, cupo) VALUES (?, ?, ?, ?,?)";
 			Connection conn = ConnectionProvider.getConnection();
 
 			PreparedStatement statement = conn.prepareStatement(sql);
@@ -47,9 +45,9 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			statement.setString(i++, attraction.getNombre());
 			statement.setInt(i++, attraction.getCosto());
 			statement.setDouble(i++, attraction.getTiempo());
-			statement.setInt(i++, attraction.getTipo().getIdTipoAtraccion());
+			statement.setInt(i++, attraction.getTipo().getId());
 			statement.setInt(i++, attraction.getCupo());
-			
+
 			int rows = statement.executeUpdate();
 
 			return rows;
@@ -57,7 +55,7 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			throw new MissingDataException(e);
 		}
 	}
-	
+
 	@Override
 	public int update(Atraccion attraction) {
 		try {
@@ -69,12 +67,11 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			statement.setString(i++, attraction.getNombre());
 			statement.setInt(i++, attraction.getCosto());
 			statement.setDouble(i++, attraction.getTiempo());
-			statement.setInt(i++, attraction.getTipo().getIdTipoAtraccion());
+			statement.setInt(i++, attraction.getTipo().getId());
 			statement.setInt(i++, attraction.getCupo());
 			statement.setInt(i++, attraction.getId());
-			
-			int rows = statement.executeUpdate();
 
+			int rows = statement.executeUpdate();
 			return rows;
 		} catch (Exception e) {
 			throw new MissingDataException(e);
@@ -89,7 +86,6 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			Double tiempoPromedio = resultados.getDouble(4);
 			Integer cupo = resultados.getInt(6);
 			TipoDeAtraccion tipoAtraccion = DAOFactory.getTipoAtraccionDAO().find(id);
-
 
 			return new Atraccion(id, nombre, costoVisita, tiempoPromedio, tipoAtraccion, cupo);
 
@@ -108,15 +104,15 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			statement.setInt(1, id);
 
 			ResultSet resultados = statement.executeQuery();
-			TipoDeAtraccion resultados2 = (TipoDeAtraccion) resultados.getObject(1); 
+			TipoDeAtraccion resultados2 = (TipoDeAtraccion) resultados.getObject(1);
 			return resultados2;
 
 		} catch (Exception e) {
 			throw new MissingDataException(e);
 		}
 	}
-	
-	public Integer getIdTipoAtraccionPorNombre(TipoDeAtraccion nombre) {
+
+	public Integer getIdTipoAtraccionPorNombre(String nombre) {
 		try {
 			String idTipoAtraccion = "SELECT id FROM tipos_de_atraccion WHERE nombre = ?";
 
@@ -139,7 +135,7 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			Connection conn = ConnectionProvider.getConnection();
 			PreparedStatement statement = conn.prepareStatement(sql);
 			statement.setInt(1, id);
-			
+
 			ResultSet resultados = statement.executeQuery();
 
 			Atraccion attraction = null;
@@ -152,8 +148,9 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 			throw new MissingDataException(e);
 		}
 	}
-		@Override
-		public int delete(Atraccion attraction) {
+
+	@Override
+	public int delete(Atraccion attraction) {
 		try {
 			String sql = "DELETE FROM atracciones WHERE ID = ?";
 			Connection conn = ConnectionProvider.getConnection();
@@ -168,12 +165,10 @@ public class AtraccionDAOImpl implements AtraccionDAO {
 		}
 	}
 
-		@Override
-		public int countAll() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-
-
+	@Override
+	public int countAll() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

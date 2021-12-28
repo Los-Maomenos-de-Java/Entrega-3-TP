@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link href="/tp3/assets/css/styles.css" rel=stylesheet>
 <jsp:include page="/partials/head.jsp"></jsp:include>
 </head>
 <body>
@@ -12,16 +11,11 @@
 
 	<main class="container">
 
-		<c:if test="${attraction != null }">
-			<div class="alert alert-danger">
-				<p>Se encontraron errores al crear la atracción.</p>
-			</div>
-		</c:if>
-	
 
-		<form action="/tp3/attractions/create.do" method="post">
-		
-			<jsp:include page="/views/atracciones/form.jsp"></jsp:include> 
+
+		<form action="/tp3/attractions/edit.do" method="post">
+			<input type="hidden" name="id" value="${attraction.getId()}">
+			<jsp:include page="/views/atracciones/form.jsp"></jsp:include>
 		</form>
 	</main>
 </body>

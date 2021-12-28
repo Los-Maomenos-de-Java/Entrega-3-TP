@@ -32,6 +32,7 @@ public class Atraccion implements Ofertable {
 		this.nombre = nombre;
 		this.costoVisita = costoVisita;
 		this.tiempoPromedio = tiempoPromedio;
+		this.tipoDeAtraccion = tipoAtraccion;
 		this.cupo = cupo;
 	}
 
@@ -144,7 +145,11 @@ public class Atraccion implements Ofertable {
 		return true;
 	}
 	
-	public Integer getIdTipoAtraccion() {
+	public String getNombreTipoAtraccion() {
+		return this.tipoDeAtraccion.getTipoDeAtraccion();
+	}
+
+	public int geIdTipoAtraccion() {
 		return this.tipoDeAtraccion.getIdTipoAtraccion();
 	}
 
